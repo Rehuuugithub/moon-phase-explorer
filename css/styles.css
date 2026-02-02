@@ -1,0 +1,374 @@
+/* ================================================
+   COSMIC ECHOES - Main Stylesheet
+   Pure CSS with Tailwind utility classes
+   ================================================ */
+
+/* ------------------------------------------------
+   CSS Custom Properties (Design Tokens)
+   ------------------------------------------------ */
+:root {
+    --cosmic-dark: #1A1A2E;
+    --cosmic-darker: #16213E;
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-20: rgba(255, 255, 255, 0.2);
+    --radius: 0.5rem;
+}
+
+/* ------------------------------------------------
+   Base Styles
+   ------------------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--cosmic-dark);
+    color: white;
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------
+   Button Styles
+   ------------------------------------------------ */
+.btn-primary {
+    background-color: var(--white-10);
+    color: white;
+    border: 1px solid var(--white-20);
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background-color: var(--white-20);
+    box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.15);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    font-size: 0.875rem;
+}
+
+.btn-ghost:hover {
+    background-color: var(--white-10);
+}
+
+.btn-secondary {
+    background-color: var(--white-10);
+    color: white;
+    border: 1px solid var(--white-20);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--white-20);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 1px solid var(--white-10);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-outline:hover {
+    background-color: var(--white-10);
+}
+
+/* ------------------------------------------------
+   Card Styles
+   ------------------------------------------------ */
+.card {
+    background-color: rgba(26, 26, 46, 0.6);
+    border: 1px solid var(--white-10);
+    border-radius: var(--radius);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* ------------------------------------------------
+   Input Styles
+   ------------------------------------------------ */
+.input-field {
+    background-color: var(--cosmic-darker);
+    border: 1px solid var(--white-10);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Date input specific styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* ------------------------------------------------
+   Stars Background
+   ------------------------------------------------ */
+.stars-container {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 40px 70px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 50px 160px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 90px 40px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 130px 80px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 160px 120px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 180px 50px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 10px 100px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 70px 140px, white, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 120px 180px, white, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* ------------------------------------------------
+   Gradient Radial (for moon glow)
+   ------------------------------------------------ */
+.bg-gradient-radial {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent, transparent);
+}
+
+/* ------------------------------------------------
+   Underline Animation
+   ------------------------------------------------ */
+.underline-animation {
+    position: relative;
+}
+
+.underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.underline-animation:hover::after {
+    width: 100%;
+}
+
+/* ------------------------------------------------
+   Animations - Fade In
+   ------------------------------------------------ */
+.animate-fade-in {
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 1.5s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------------------------------
+   Animations - Pulse Glow
+   ------------------------------------------------ */
+.animate-pulse-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow-delayed {
+    animation: pulseGlowDelayed 4s ease-in-out infinite 1s;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: scale(1.05); 
+    }
+}
+
+@keyframes pulseGlowDelayed {
+    0%, 100% { 
+        opacity: 0.2; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.4; 
+        transform: scale(1.1); 
+    }
+}
+
+/* ------------------------------------------------
+   Animations - Float
+   ------------------------------------------------ */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-gentle-float {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-10px) rotate(2deg); 
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-5px); 
+    }
+}
+
+/* ------------------------------------------------
+   Animations - Pulse Slow
+   ------------------------------------------------ */
+.animate-pulse-slow {
+    animation: pulseSlow 3s infinite;
+}
+
+.animate-pulse-slow-subtle {
+    animation: pulseSlowSubtle 4s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+    0% { box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.2); }
+    100% { box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1); }
+}
+
+@keyframes pulseSlowSubtle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* ------------------------------------------------
+   Moon Phase Card Hover Effects
+   ------------------------------------------------ */
+.moon-phase-card {
+    transition: all 0.3s ease;
+}
+
+.moon-phase-card:hover {
+    transform: scale(1.1);
+}
+
+.moon-phase-card:hover .moon-phase-image {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.2);
+}
+
+.moon-phase-card:hover .moon-phase-name {
+    color: white;
+}
+
+.moon-phase-image {
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.moon-phase-name {
+    transition: color 0.3s ease;
+}
+
+/* ------------------------------------------------
+   Shadow Glow Utility
+   ------------------------------------------------ */
+.shadow-glow {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+}
+
+.shadow-glow-sm {
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* ------------------------------------------------
+   Loading Spinner
+   ------------------------------------------------ */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* ------------------------------------------------
+   Utility: Hidden
+   ------------------------------------------------ */
+.hidden {
+    display: none !important;
+}
+
+/* ------------------------------------------------
+   Responsive Adjustments
+   ------------------------------------------------ */
+@media (max-width: 768px) {
+    .btn-primary {
+        padding: 0.625rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.875rem;
+    }
+}

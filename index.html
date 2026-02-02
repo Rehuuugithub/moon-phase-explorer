@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Echoes - Discover the Moon on Your Special Day</title>
+    <meta name="description" content="Discover the moon phase on your date of birth with Cosmic Echoes">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-dark': '#1A1A2E',
+                        'cosmic-darker': '#16213E',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-cosmic-dark to-cosmic-darker text-white font-['Inter']">
+    
+    <!-- Header -->
+    <header class="fixed w-full z-20 bg-cosmic-dark/80 backdrop-blur-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight hover:opacity-80 transition-all duration-300 drop-shadow-md">
+                Cosmic Echoes
+            </h1>
+            <a href="results.html" class="btn-ghost">
+                Discover Your Moon
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 pt-24 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cosmic-dark/80 z-10"></div>
+            <div class="stars-container absolute inset-0"></div>
+        </div>
+
+        <div class="z-10 text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+                Discover the Moon on Your Special Day
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 animate-fade-in-delay">
+                Enter your date of birth to see the moon's phase and learn about the night sky on that day.
+            </p>
+            <a href="results.html" class="btn-primary inline-block animate-pulse-slow">
+                Find Your Moon
+            </a>
+        </div>
+
+        <div class="relative w-full max-w-md aspect-square mx-auto z-0">
+            <div id="moon-animation" class="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
+                <!-- Glow effects -->
+                <div class="absolute inset-0 rounded-full bg-white/20 blur-xl animate-pulse-glow"></div>
+                <div class="absolute inset-4 rounded-full bg-white/10 blur-lg animate-pulse-glow-delayed"></div>
+                
+                <!-- Moon image -->
+                <div class="relative w-full h-full rounded-full overflow-hidden animate-float">
+                    <img id="hero-moon-image" 
+                         src="https://images-assets.nasa.gov/image/PIA00302/PIA00302~medium.jpg" 
+                         alt="Moon phase" 
+                         class="w-full h-full object-cover transition-opacity duration-1000"
+                         crossorigin="anonymous">
+                </div>
+                
+                <!-- Additional glow overlay -->
+                <div class="absolute inset-0 rounded-full bg-gradient-radial from-white/5 via-transparent to-transparent animate-pulse-slow-subtle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-4 bg-cosmic-darker/80">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">About Cosmic Echoes</h2>
+            <p class="text-lg text-center text-gray-300 mb-12">
+                Enter your date of birth to see the moon's phase and learn about the night sky on that day. Discover the
+                celestial conditions that welcomed you to this world.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12" id="moon-phases-grid">
+                <!-- Moon phases will be rendered by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-cosmic-dark">
+        <div class="container mx-auto text-center text-sm text-gray-400">
+            <p>
+                Cosmic Echoes • Data simulated for demonstration purposes • Created by
+                <a href="https://www.instagram.com/raihan.cpp?igsh=MXc1ZmExcjUwMnFoeg==" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="text-gray-300 hover:text-white underline-animation ml-1">
+                    Raihan
+                </a>
+            </p>
+            <p class="mt-2">
+                Data provided by
+                <a href="#" class="text-gray-300 hover:text-white underline-animation">Astronomy API</a>
+                and
+                <a href="#" class="text-gray-300 hover:text-white underline-animation">Weather API</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize landing page
+        document.addEventListener('DOMContentLoaded', function() {
+            initMoonAnimation();
+            renderMoonPhasesGrid();
+        });
+    </script>
+</body>
+</html>

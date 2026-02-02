@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Birth Moon - Cosmic Echoes</title>
+    <meta name="description" content="Enter your date of birth to discover the moon phase on that special day">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-dark': '#1A1A2E',
+                        'cosmic-darker': '#16213E',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-cosmic-dark to-cosmic-darker text-white font-['Inter']">
+    
+    <!-- Header -->
+    <header class="fixed w-full z-10 bg-cosmic-dark/80 backdrop-blur-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight hover:opacity-80 transition-all duration-300">
+                Cosmic Echoes
+            </h1>
+            <a href="index.html" class="btn-ghost">
+                Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Discover Your Birth Moon</h2>
+
+            <!-- Input Section -->
+            <div class="card mb-8">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Enter Your Date of Birth</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Select the date to see the moon phase and weather on that day
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input type="date" 
+                               id="birthdate-input" 
+                               class="input-field flex-1"
+                               max="">
+                        <button id="submit-btn" class="btn-primary whitespace-nowrap">
+                            <span id="btn-text">Show My Moon</span>
+                            <span id="btn-loading" class="hidden">
+                                <svg class="animate-spin h-4 w-4 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Loading...
+                            </span>
+                        </button>
+                    </div>
+                    <p id="error-message" class="text-red-400 mt-2 hidden"></p>
+                </div>
+            </div>
+
+            <!-- Results Section (Hidden by default) -->
+            <div id="results-section" class="hidden animate-fade-in">
+                <div class="card mb-8 overflow-hidden">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Moon Display -->
+                        <div class="flex items-center justify-center p-6 bg-cosmic-darker/50">
+                            <div id="moon-display" class="relative w-full aspect-square max-w-[300px]">
+                                <!-- Glow effects -->
+                                <div class="absolute inset-0 rounded-full bg-white/20 blur-xl animate-pulse-glow"></div>
+                                <div class="absolute inset-4 rounded-full bg-white/10 blur-lg animate-pulse-glow-delayed"></div>
+                                
+                                <!-- Moon image container -->
+                                <div class="relative w-full h-full rounded-full overflow-hidden animate-gentle-float">
+                                    <img id="moon-result-image" 
+                                         src="" 
+                                         alt="Moon phase" 
+                                         class="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+                                         crossorigin="anonymous">
+                                    
+                                    <!-- Overlay for additional glow -->
+                                    <div class="absolute inset-0 bg-gradient-radial from-white/5 via-transparent to-transparent"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Moon Info -->
+                        <div class="p-6">
+                            <h3 id="phase-name" class="text-2xl font-bold mb-4">Full Moon</h3>
+                            <p id="phase-description" class="text-gray-300 mb-6"></p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Moon Details</h4>
+                                    <p class="text-sm text-gray-400">
+                                        Moon Age: <span id="moon-age">0</span> days<br>
+                                        Illumination: <span id="moon-illumination">0</span>%
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Weather Conditions</h4>
+                                    <p class="text-sm text-gray-400">
+                                        Temperature: <span id="weather-temp">0</span>°C<br>
+                                        Conditions: <span id="weather-conditions">Clear</span><br>
+                                        Cloud Cover: <span id="weather-clouds">0</span>%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Download Button -->
+                <div class="flex justify-center mb-8">
+                    <a id="download-btn" 
+                       href="#" 
+                       download="moon-phase.jpg" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn-secondary">
+                        Download Image
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-gray-400 mb-4">Want to explore another date?</p>
+                    <button id="reset-btn" class="btn-outline">
+                        Try Another Date
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-section" class="hidden">
+                <div class="flex items-center justify-center p-12">
+                    <div class="w-32 h-32 rounded-full bg-white/10 animate-pulse flex items-center justify-center">
+                        <div class="w-16 h-16 border-4 border-white/20 border-t-white/60 rounded-full animate-spin"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-cosmic-dark">
+        <div class="container mx-auto text-center text-sm text-gray-400">
+            <p>
+                Cosmic Echoes • Data simulated for demonstration purposes • Created by
+                <a href="https://www.instagram.com/raihan.cpp?igsh=MXc1ZmExcjUwMnFoeg==" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="text-gray-300 hover:text-white underline-animation ml-1">
+                    Raihan
+                </a>
+            </p>
+            <p class="mt-2">
+                Data provided by
+                <a href="#" class="text-gray-300 hover:text-white underline-animation">Astronomy API</a>
+                and
+                <a href="#" class="text-gray-300 hover:text-white underline-animation">Weather API</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize results page
+        document.addEventListener('DOMContentLoaded', function() {
+            initResultsPage();
+        });
+    </script>
+</body>
+</html>
