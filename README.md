@@ -2,6 +2,10 @@
 
 Discover the moon phase on your date of birth!
 
+## Live Demo
+
+Check out the live version of the website [here](https://cosmic-echoes.vercel.app/).
+
 ## Tech Stack
 
 - **HTML5** - Semantic markup
